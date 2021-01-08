@@ -91,18 +91,30 @@ class Main:
         events = calendar_api.upcoming_events
 
         c = 0
+        today = datetime.now().date()
+
         #print(len(events))
         for event in events:
             #start_utc = dateutil.parser.parse(start)
             #print(start_utc.strftime("%d.%m.%Y %H:%M"))
             #print(start, event['summary'])
             #print(start_utc.strftime("%d.%m.%Y %H:%M"), event["summary"])
-            event_start = dateutil.parser.parse(event[0]).strftime("%d.%m.%Y %H:%M")
-            if "00:00" in event_start:
-                event_start = event_start.replace(" 00:00", ":")
+            event_start = dateutil.parser.parse(event[0])
+            event_date = event_start.date()
+
+            #remove the 00:00 if the event starts at midnight/whole-day whatever. datetime.time doesn't want to work
+            event_start_str = event_start.strftime("%d.%m.%Y %H:%M")
+            if "00:00" in event_start_str:
+                event_start_str = event_start_str.replace(" 00:00", ":")
             else:
-                event_start = event_start + "Uhr:"
-            self.event_labels_calendar[c][0].configure(text=event_start)
+                event_start_str = event_start_str + "Uhr:"
+
+            #Today's the day!    
+            if (today == event_date):
+                self.event_labels_calendar[c][0].configure(fg="blue")
+                self.event_labels_calendar[c][1].config(fg="blue")
+                
+            self.event_labels_calendar[c][0].configure(text=event_start_str)
             self.event_labels_calendar[c][1].configure(text="{}".format(event[1]))
 
             c += 1
