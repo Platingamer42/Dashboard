@@ -5,7 +5,7 @@ import os
 
 
 def load_data():
-    global username, api_key, lon, lat, city_name, background_color, header_color, frame_color, font, calendarID, calendarURL, departures_station, offset
+    global username, api_key, lon, lat, city_name, background_color, header_color, frame_color, highlight_color, font, calendarID, calendarURL, departures_station, offset
     path = os.path.join(os.path.realpath(__file__), "..", "..", "config.json")
     #print(path)
     with open(path, encoding="utf-8") as f:
@@ -21,6 +21,7 @@ def load_data():
     background_color = data["colors"]["background_color"]
     header_color = data["colors"]["header_color"]
     frame_color = data["colors"]["frame_color"]
+    highlight_color = data["colors"]["highlight_color"]
 
     lon = data["weather"]["lon"]   
     lat = data["weather"]["lat"]

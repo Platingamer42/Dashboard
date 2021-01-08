@@ -37,6 +37,7 @@ class Main:
         self.background_color = json_loader.background_color
         self.frame_color = json_loader.frame_color
         self.header_color = json_loader.header_color
+        self.highlight_color = json_loader.highlight_color
 
     def init_departures_api(self):
         station_string = json_loader.departures_station
@@ -111,9 +112,9 @@ class Main:
 
             #Today's the day!    
             if (today == event_date):
-                self.event_labels_calendar[c][0].configure(fg="blue")
-                self.event_labels_calendar[c][1].config(fg="blue")
-                
+                self.event_labels_calendar[c][0].configure(fg=self.highlight_color)
+                self.event_labels_calendar[c][1].config(fg=self.highlight_color)
+
             self.event_labels_calendar[c][0].configure(text=event_start_str)
             self.event_labels_calendar[c][1].configure(text="{}".format(event[1]))
 
