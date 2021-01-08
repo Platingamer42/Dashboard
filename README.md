@@ -1,4 +1,7 @@
 # Dashboard
+U'll need a key for openweatherapi and get started with the google calendar api. Super easy, barely an inconvenience.
+The departures work with the mvg-api, so it only works if you live in munich (well, it works in paris too... But why would you want to know the departures in munich, when you live in paris?)
+
 config-example: 
 
 {
